@@ -1,0 +1,33 @@
+.Game {
+    background-color: var(--tg-theme-secondary-bg-color, #f3f2f8);
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.Game-board {
+    background-color: var(--tg-theme-bg-color, white);
+    flex: 1;
+    border-radius: 20px;
+    margin: 0 10px 10px 10px;
+}
+
+.Game-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    font-size: 0.8em;
+    color: var(--tg-theme-hint-color, gray);
+}
+
+.Game-header > * {
+    margin: 0 10px;
+}
+
+.Game-footer {
+    font-size: 0.8em;
+    color: var(--tg-theme-hint-color, gray);
+    margin: 0 8px 8px 8px;
+}

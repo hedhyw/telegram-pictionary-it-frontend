@@ -1,0 +1,24 @@
+.ScoreBoard {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-family: sans-serif;
+    overflow: auto;
+    text-align: center;
+}
+
+.ScoreBoard td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    padding: 8px 0;
+}
+
+.ScoreBoard-you {
+    display: none;
+}
+
+.ScoreBoard-currentPlayer .ScoreBoard-you {
+    display: inline;
+}

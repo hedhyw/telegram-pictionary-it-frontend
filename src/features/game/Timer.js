@@ -10,7 +10,6 @@ export function Timer() {
 
     useEffect(() => {
         const secondsLeft = (finishAt - Date.now()) / 1000;
-        console.log(secondsLeft, finishAt, Date.now())
 
         const intervalId = setInterval(() => {
             setSecondsLeft(secondsLeft);
@@ -23,13 +22,13 @@ export function Timer() {
     const shouldRenderTimer = game.state === GAME_STATE_IN_PROGRESS && secondsLeft >= 0;
 
     return (
-        <ul>
+        <div>
             {shouldRenderTimer && <span>
                 Left: {Math.round(secondsLeft)}s
             </span>}
             {!shouldRenderTimer && <span>
                 --:--
             </span>}
-        </ul>
+        </div>
     );
 }

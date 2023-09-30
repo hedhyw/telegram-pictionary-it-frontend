@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const GAME_STATE_INITIAL = 'game.stateInitial';
 export const GAME_STATE_IN_PROGRESS = 'game.stateInProgress';
+export const GAME_STATE_FINISHED = 'game.stateFinished';
 
 const initialState = {
     isEstablishingConnection: false,

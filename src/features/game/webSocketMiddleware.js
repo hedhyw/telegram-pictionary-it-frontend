@@ -28,6 +28,10 @@ function _handleWebSocketEvent(store, name, payload) {
             store.dispatch(setRemoteImage(payload.imageBase64));
 
             break;
+        case 'game.ResponseEventPlayerGuessFailed':
+            console.log('TODO: guess failed');
+
+            break;
         default:
             break;
     }
@@ -39,17 +43,27 @@ const webSocketMiddleware = store => {
     return next => action => {
         const onOpen = _ => (event) => {
             console.log('websocket connected', event.target.url);
+
+            // TODO: check taht initData is available
+            // TODO: check initData and display warning.
+            store.dispatch(sendServerMessage({
+                'name': 'core.RequestEventPlayerInitialized',
+                'payload': {
+                    'initDataRaw': window.Telegram.WebApp.initData,
+                },
+            }))
         };
 
         const onClose = store => () => {
-            // TODO: reconnecting.
+            console.log('websocket disconnected');
+
             store.dispatch(serverDisconnected());
         };
 
         const onMessage = _ => (event) => {
             const parsedData = JSON.parse(event.data);
 
-            console.log('received websocket message', parsedData);
+            console.log('received websocket message:', parsedData);
 
             _handleWebSocketEvent(store, parsedData.name, parsedData.payload);
         };
@@ -61,16 +75,20 @@ const webSocketMiddleware = store => {
 
             const clientId = uuidv4();
 
-            socket = new WebSocket(process.env.REACT_APP_API_URL + '&client_id=' + clientId);
+            socket = new WebSocket(process.env.REACT_APP_API_URL + '?client_id=' + clientId);
 
             socket.onmessage = onMessage(store);
             socket.onclose = onClose(store);
             socket.onopen = onOpen(store);
         }
 
-        console.log(action);
+        if (serverDisconnected.match(action)) {
+            store.dispatch(startConnecting());
+        }
+
         if (sendServerMessage.match(action)) {
             console.log('sending websocket message:', action.payload);
+
             if (socket != null) {
                 socket.send(JSON.stringify(action.payload));
             }
