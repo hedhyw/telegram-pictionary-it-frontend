@@ -5,7 +5,7 @@ const gameStatusEmoji = {
     [GAME_STATE_INITIAL]: '☀️',
     [GAME_STATE_IN_PROGRESS]: '⌛',
     [GAME_STATE_FINISHED]: '🏁',
-}
+};
 
 export default function GameStatusEmoji() {
     const gameState = useSelector(selectGameState);

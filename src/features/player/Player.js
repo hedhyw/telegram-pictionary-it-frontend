@@ -16,7 +16,7 @@ export function Player() {
         [GAME_STATE_INITIAL]: 'Welcome',
         [GAME_STATE_IN_PROGRESS]: 'Let\'s play',
         [GAME_STATE_FINISHED]: 'Game over',
-    }
+    };
 
     return (
         <div class="Player">

@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 import playerReducer from '../features/player/playerSlice';
 import gameReducer from '../features/game/gameSlice';
 import webSocketMiddleware from '../features/game/webSocketMiddleware';

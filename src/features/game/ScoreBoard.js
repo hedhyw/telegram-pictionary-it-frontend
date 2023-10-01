@@ -25,7 +25,7 @@ export function ScoreBoard() {
                         class={isPlayerCurrent(player) ? 'ScoreBoard-currentPlayer' : ''}>
                         <td>{player.username}<sup class="ScoreBoard-you"> (you)</sup></td>
                         <td>{player.score} {player.roundScore !== 0 && <span>(+{player.roundScore})</span>}</td>
-                    </tr>
+                    </tr>;
                 })}
             </tbody>
         </table>

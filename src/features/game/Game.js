@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
     GAME_STATE_IN_PROGRESS,

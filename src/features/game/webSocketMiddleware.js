@@ -44,14 +44,18 @@ const webSocketMiddleware = store => {
         const onOpen = _ => (event) => {
             console.log('websocket connected', event.target.url);
 
-            // TODO: check taht initData is available
-            // TODO: check initData and display warning.
-            store.dispatch(sendServerMessage({
-                'name': 'core.RequestEventPlayerInitialized',
-                'payload': {
-                    'initDataRaw': window.Telegram.WebApp.initData,
-                },
-            }))
+            const initData = window?.Telegram?.WebApp?.initData;
+
+            if (initData) {
+                store.dispatch(sendServerMessage({
+                    'name': 'core.RequestEventPlayerInitialized',
+                    'payload': {
+                        'initDataRaw': window.Telegram.WebApp.initData,
+                    },
+                }));
+            } else {
+                console.warn('init data is unavailable');
+            }
         };
 
         const onClose = store => () => {
@@ -95,7 +99,7 @@ const webSocketMiddleware = store => {
         }
 
         next(action);
-    }
-}
+    };
+};
 
 export default webSocketMiddleware;

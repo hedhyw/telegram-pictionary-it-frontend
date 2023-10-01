@@ -26,13 +26,13 @@ export const gameSlice = createSlice({
         }),
         sendServerMessage: (_ => { }),
         setGame: (state, action) => {
-            state.value = action.payload
+            state.value = action.payload;
         },
         setRemoteImage: (state, action) => {
-            state.remoteImage = action.payload
+            state.remoteImage = action.payload;
         },
         setGameLeaderWord: (state, action) => {
-            state.leaderWord = action.payload
+            state.leaderWord = action.payload;
         },
     },
 });
@@ -53,7 +53,7 @@ export const startGame = () => (dispatch) => {
         'name': 'core.RequestEventGameStarted',
         'payload': {},
     }));
-}
+};
 
 export const guessWord = (word) => (dispatch) => {
     dispatch(sendServerMessage({
@@ -62,7 +62,7 @@ export const guessWord = (word) => (dispatch) => {
             'word': word,
         },
     }));
-}
+};
 
 export const setCanvasImage = (image) => (dispatch) => {
     dispatch(sendServerMessage({
@@ -71,7 +71,7 @@ export const setCanvasImage = (image) => (dispatch) => {
             'imageBase64': image,
         },
     }));
-}
+};
 
 export const selectGameState = (state) => state.game.value.state;
 export const selectGame = (state) => state.game.value;

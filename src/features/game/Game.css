@@ -1,5 +1,4 @@
 .Game {
-    background-color: var(--tg-theme-secondary-bg-color, #f3f2f8);
     display: flex;
     height: 100%;
     flex-direction: column;

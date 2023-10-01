@@ -1,5 +1,27 @@
 .App {
   text-align: center;
   height: 100vh;
-  color: var(--tg-theme-text-color, white);
+}
+
+.App-unavailable {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  padding: 0 20px;
+}
+
+.App-unavailable svg {
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.App-unavailable > * {
+  margin: 10px 0;
+}
+
+.App-unavailable svg {
+  fill: red;
 }
