@@ -2,13 +2,22 @@
     text-align: center;
     background-color: var(--tg-theme-button-color, #5ac8fb);
     color: var(--tg-theme-button-text-color, white);
-    font-size: 14pt;
-    padding: 14px;
-    border-radius: 6px;
     border: none;
     cursor: pointer;
     transition: filter 0.1s ease-in;
     box-sizing: border-box;
+}
+
+.ButtonSmall {
+    font-size: 10pt;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.ButtonLarge {
+    font-size: 14pt;
+    padding: 14px;
+    border-radius: 6px;
     width: 100%;
 }
 

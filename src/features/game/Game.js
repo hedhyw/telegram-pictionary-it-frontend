@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
+    GAME_STATE_INITIAL,
     GAME_STATE_IN_PROGRESS,
     selectGamePlayers,
     selectGameState,
@@ -15,7 +16,7 @@ import { ScoreBoard } from './ScoreBoard';
 import { Timer } from './Timer';
 import Button from '../../common/Button';
 import './Game.css';
-import GameStatusEmoji from './GameStatusEmoji';
+import {GameStatusEmoji, GameStatusWord} from './GameStatus';
 
 export function Game() {
     const dispatch = useDispatch();
@@ -27,18 +28,19 @@ export function Game() {
     useEffect(() => dispatch(startConnecting()), []);
 
     return (
-        <div class="Game">
-            <div class="Game-header">
-                <Player />
+        <div className="Game">
+            <div className="Game-header">
+                {gameState === GAME_STATE_INITIAL && <Player />}
+                <GameStatusWord />
                 <GameStatusEmoji />
                 <Timer />
             </div>
-            <div class="Game-board">
+            <div className="Game-board">
                 {gameState === GAME_STATE_IN_PROGRESS && isCurrentPlayerLead && <LeaderCanvas />}
                 {gameState === GAME_STATE_IN_PROGRESS && !isCurrentPlayerLead && <GuesserCanvas />}
                 {gameState !== GAME_STATE_IN_PROGRESS && <ScoreBoard />}
             </div>
-            <div class="Game-footer">
+            <div className="Game-footer">
                 {gameState !== GAME_STATE_IN_PROGRESS && gamePlayers.length >= 2 &&
                     <Button onClick={() => dispatch(startGame())} name="Start" title="Start the game" />
                 }

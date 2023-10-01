@@ -1,0 +1,30 @@
+.LeaderCanvas-IconButton {
+    cursor: pointer;
+    transition: filter 0.1s ease-out;
+}
+
+.LeaderCanvas-IconButton:hover {
+    transition: filter 0.2s ease-out;
+    filter: brightness(70%);
+}
+
+.LeaderCanvas-Actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
+
+.LeaderCanvas-Actions > * {
+    margin: 0 10px;
+}
+
+.LeaderCanvas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

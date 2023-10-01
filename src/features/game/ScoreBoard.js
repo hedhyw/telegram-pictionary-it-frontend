@@ -11,7 +11,7 @@ export function ScoreBoard() {
     players.sort((left, right) => (isPlayerCurrent(left) ? -1 : left.username.localeCompare(right.username)));
 
     return (
-        <table class="ScoreBoard">
+        <table className="ScoreBoard">
             <thead>
                 <tr>
                     <th>Player</th>
@@ -22,9 +22,9 @@ export function ScoreBoard() {
                 {players.map((player) => {
                     return <tr
                         key={player.clientId}
-                        class={isPlayerCurrent(player) ? 'ScoreBoard-currentPlayer' : ''}>
-                        <td>{player.username}<sup class="ScoreBoard-you"> (you)</sup></td>
-                        <td>{player.score} {player.roundScore !== 0 && <span>(+{player.roundScore})</span>}</td>
+                        className={isPlayerCurrent(player) ? 'ScoreBoard-currentPlayer' : ''}>
+                        <td>{player.username}<sup className="ScoreBoard-you"> (you)</sup></td>
+                        <td>{player.score} {player.roundScore !== 0 && <sup>+{player.roundScore}</sup>}</td>
                     </tr>;
                 })}
             </tbody>

@@ -8,6 +8,7 @@ body {
   height: 100%;
   background-color: var(--tg-theme-secondary-bg-color, #f3f2f8);
   color: var(--tg-theme-text-color, black);
+  transition: color ease-out 0.2s, background-color ease-out 0.2s;
 }
 
 code {

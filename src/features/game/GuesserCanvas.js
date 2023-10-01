@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { guessWord, selectCurrentPlayer, selectRemoteImage } from './gameSlice';
+import './GuesserCanvas.css';
+import Button from '../../common/Button';
+import { useEffect } from 'react';
 
 export default function GuesserCanvas() {
     const dispatch = useDispatch();
@@ -14,17 +17,48 @@ export default function GuesserCanvas() {
         setWord('');
     }
 
+    useEffect(() => {
+        const listener = function (event) {
+            event.preventDefault();
+        };
+
+        document.addEventListener('touchmove', listener, { passive: false });
+
+        return () => {
+            document.removeEventListener('touchmove', listener);
+        };
+    }, []);
+
+    function handleInputKeyPress(event) {
+        if (event.key === 'Enter') {
+            handeSubmitWord();
+        }
+    }
+
     return (
-        <div>
-            {remoteImage && <img src={remoteImage} alt="Drawing" />}
-            {currentPlayer.roundWordMatched && <span>success</span>}
-            {!currentPlayer.roundWordMatched && (
-                <div>
+        <div className="GuesserCanvas">
+            <div className="GuesserCanvas-Drawing">
+                {remoteImage && <img src={remoteImage} alt="Drawing" />}
+            </div>
+            <hr />
+            {currentPlayer?.roundWordMatched && <div>
+                <p>🏆 success 🏆</p>
+                <p class="GuesserCanvas-matched-subtext">Waiting for other players to finish the game.</p>
+            </div>}
+            {!currentPlayer?.roundWordMatched && (
+                <div className="GuesserCanvas-Input">
                     <input
                         value={word}
+                        type="text"
+                        placeholder="Enter the word..."
                         onChange={(event) => setWord(event.target.value)}
+                        onKeyDown={handleInputKeyPress}
                     />
-                    <button type="button" onClick={() => handeSubmitWord()}>Submit</button>
+                    <Button
+                        isSmall={true}
+                        name="Submit"
+                        description="Guess the word"
+                        onClick={() => handeSubmitWord()} />
                 </div>
             )}
         </div>

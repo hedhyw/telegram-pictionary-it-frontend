@@ -21,7 +21,3 @@
 .App-unavailable > * {
   margin: 10px 0;
 }
-
-.App-unavailable svg {
-  fill: red;
-}

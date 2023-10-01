@@ -87,7 +87,9 @@ const webSocketMiddleware = store => {
         }
 
         if (serverDisconnected.match(action)) {
-            store.dispatch(startConnecting());
+            setTimeout(()=> {
+                store.dispatch(startConnecting());
+            }, 500); 
         }
 
         if (sendServerMessage.match(action)) {

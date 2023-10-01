@@ -19,7 +19,7 @@ export function Player() {
     };
 
     return (
-        <div class="Player">
+        <div className="Player">
             {playerLabelByStatus[gameState] ?? playerLabelByStatus[GAME_STATE_INITIAL]}, {player.username}
         </div>
     );
