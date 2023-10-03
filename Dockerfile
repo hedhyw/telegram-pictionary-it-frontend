@@ -1,4 +1,7 @@
-FROM node:lts-alpine3.18
+FROM node:lts-alpine3.18 as builder
+
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 
 WORKDIR /app
 
@@ -7,4 +10,8 @@ RUN npm --legacy-peer-deps install
 
 COPY . .
 
-CMD ["npm", "run", "start"]
+RUN npm run build
+
+FROM nginx:1.25.2-alpine3.18
+
+COPY --from=builder /app/build /usr/share/nginx/html
