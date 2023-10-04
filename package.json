@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
-    "image": "docker build -t hedhyw/telegram-pictionary-it-frontend . && docker push hedhyw/telegram-pictionary-it-frontend"
+    "image": "docker build --build-arg REACT_APP_API_URL=wss://example.com/api/websocket -t hedhyw/telegram-pictionary-it-frontend . && docker push hedhyw/telegram-pictionary-it-frontend"
   },
   "browserslist": {
     "production": [
