@@ -28,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "image": "docker build -t hedhyw/telegram-pictionary-it-frontend . && docker push hedhyw/telegram-pictionary-it-frontend"
   },
   "browserslist": {
     "production": [
