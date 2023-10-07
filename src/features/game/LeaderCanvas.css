@@ -17,8 +17,17 @@
     margin: 10px 0 0 0;
 }
 
-.LeaderCanvas-Actions > * {
+.LeaderCanvas-Actions>* {
     margin: 0 10px;
+}
+
+.LeaderCanvas-Canvas {
+    transition: filter ease-out 0.1s;
+}
+
+.LeaderCanvas-Canvas-dark {
+    filter: invert();
+    transition: filter ease-out 0.2s;
 }
 
 .LeaderCanvas {

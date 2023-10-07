@@ -23,11 +23,17 @@ export function GameStatusWord() {
 
     const shouldShowWord = isCurrentPlayerLead || currentPlayer?.roundWordMatched;
 
+    let word = game.word || game.hint;
+
+    if (isCurrentPlayerLead) {
+        word = leaderWord || word;
+    }
+
     return (<div>
         {game.state === GAME_STATE_FINISHED && <span>{game.word}</span>}
         {game.state === GAME_STATE_IN_PROGRESS && (
             <span>
-                {shouldShowWord && <span>{leaderWord || game.word || game.hint}</span>}
+                {shouldShowWord && <span>{word}</span>}
                 {!shouldShowWord && <span>{game.hint}</span>}
                 <sup>{game.hint?.length}</sup>
             </span>

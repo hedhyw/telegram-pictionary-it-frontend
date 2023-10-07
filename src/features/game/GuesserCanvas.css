@@ -4,6 +4,12 @@
     height: 100%;
     justify-content: center;
     align-items: center;
+    transition: filter ease-out 0.1s;
+}
+
+.GuesserCanvas-Drawing-dark {
+    filter: invert();
+    transition: filter ease-out 0.2s;
 }
 
 .GuesserCanvas hr {
@@ -18,16 +24,19 @@
     width: 100%;
 }
 
-.GuesserCanvas-Input > * {
+.GuesserCanvas-Input>* {
     margin: 0px 10px 10px 10px;
     caret-color: auto;
 }
 
-.GuesserCanvas-Input > input {
+.GuesserCanvas-Input>input {
     flex: 1;
     padding-left: 0.25rem;
     border: none;
     user-select: text;
+    background-color: var(--tg-theme-bg-color, white);
+    color: var(--tg-theme-text-color, black);
+    outline: none;
 }
 
 .GuesserCanvas-Drawing {

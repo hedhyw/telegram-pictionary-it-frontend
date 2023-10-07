@@ -4,8 +4,11 @@ import { guessWord, selectCurrentPlayer, selectRemoteImage } from './gameSlice';
 import './GuesserCanvas.css';
 import Button from '../../common/Button';
 import { useEffect } from 'react';
+import { THEME_DARK, selectTheme } from '../../app/appSlice';
 
 export default function GuesserCanvas() {
+    const isThemeDark = useSelector(selectTheme) === THEME_DARK;
+
     const dispatch = useDispatch();
     const currentPlayer = useSelector(selectCurrentPlayer);
     const remoteImage = useSelector(selectRemoteImage);
@@ -37,7 +40,7 @@ export default function GuesserCanvas() {
 
     return (
         <div className="GuesserCanvas">
-            <div className="GuesserCanvas-Drawing">
+            <div className={isThemeDark ? 'GuesserCanvas-Drawing GuesserCanvas-Drawing-dark' : 'GuesserCanvas-Drawing'}>
                 {remoteImage && <img src={remoteImage} alt="Drawing" />}
             </div>
             <hr />

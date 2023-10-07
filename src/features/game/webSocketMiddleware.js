@@ -25,11 +25,11 @@ function _handleWebSocketEvent(store, name, payload) {
 
             break;
         case 'game.ResponseEventCanvasChanged':
-            store.dispatch(setRemoteImage(payload.imageBase64));
+            store.dispatch(setRemoteImage(payload));
 
             break;
         case 'game.ResponseEventPlayerGuessFailed':
-            console.log('TODO: guess failed');
+            console.log('todo: show notification on guess failed');
 
             break;
         default:

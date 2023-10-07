@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const GAME_STATE_INITIAL = 'game.stateInitial';
-export const GAME_STATE_IN_PROGRESS = 'game.stateInProgress';
-export const GAME_STATE_FINISHED = 'game.stateFinished';
+export const GAME_STATE_INITIAL = 'game.StateInitial';
+export const GAME_STATE_IN_PROGRESS = 'game.StateInProgress';
+export const GAME_STATE_FINISHED = 'game.StateFinished';
 
 const initialState = {
     isEstablishingConnection: false,
     value: {
         players: [],
         state: GAME_STATE_INITIAL,
+        unixNano: 0,
     },
     leaderWord: null,
+    lastRemoteImageUnixNano: 0,
     remoteImage: null,
 };
 
@@ -26,10 +28,15 @@ export const gameSlice = createSlice({
         }),
         sendServerMessage: (_ => { }),
         setGame: (state, action) => {
-            state.value = action.payload;
+            if (state.value.unixNano < action.payload.unixNano) {
+                state.value = action.payload;
+            }
         },
         setRemoteImage: (state, action) => {
-            state.remoteImage = action.payload;
+            if (state.lastRemoteImageUnixNano < action.payload.unixNano) {
+                state.lastRemoteImageUnixNano = action.payload.unixNano;
+                state.remoteImage = action.payload.imageBase64;
+            }
         },
         setGameLeaderWord: (state, action) => {
             state.leaderWord = action.payload;
@@ -64,11 +71,11 @@ export const guessWord = (word) => (dispatch) => {
     }));
 };
 
-export const setCanvasImage = (image) => (dispatch) => {
+export const setCanvasImage = (imageData) => (dispatch) => {
     dispatch(sendServerMessage({
         'name': 'core.RequestEventCanvasChanged',
         'payload': {
-            'imageBase64': image,
+            'imageBase64': imageData,
         },
     }));
 };

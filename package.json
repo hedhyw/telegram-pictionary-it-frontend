@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
+    "lint": "eslint ./src",
     "image": "docker build --build-arg REACT_APP_API_URL=wss://example.com/api/websocket -t hedhyw/telegram-pictionary-it-frontend . && docker push hedhyw/telegram-pictionary-it-frontend"
   },
   "browserslist": {

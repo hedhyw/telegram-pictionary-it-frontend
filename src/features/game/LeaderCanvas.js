@@ -4,8 +4,10 @@ import { selectGameLeaderWord, setCanvasImage } from './gameSlice';
 import ClearIcon from '@mui/icons-material/Clear';
 import UndoIcon from '@mui/icons-material/Undo';
 import './LeaderCanvas.css';
+import { THEME_DARK, selectTheme } from '../../app/appSlice';
 
 export function LeaderCanvas() {
+    const isThemeDark = useSelector(selectTheme) === THEME_DARK;
     const dispatch = useDispatch();
     const leaderWord = useSelector(selectGameLeaderWord);
 
@@ -14,7 +16,7 @@ export function LeaderCanvas() {
     return (
         <div className='LeaderCanvas'>
             <CanvasDraw
-                className="LeaderCanvas-Canvas"
+                className={isThemeDark ? 'LeaderCanvas-Canvas LeaderCanvas-Canvas-dark' : 'LeaderCanvas-Canvas'}
                 ref={canvasDraw => (canvasDrawInstance = canvasDraw)}
                 brushRadius={2}
                 lazyRadius={0}
