@@ -4,32 +4,35 @@ This a frontend for Telegram Mini App "Pictionary It".
 
 Check [this](https://github.com/hedhyw/telegram-pictionary-it) if you want to run this frontend with [the backend](https://github.com/hedhyw/telegram-pictionary-it-backend).
 
-## Configuration
+## Setup
 
-Declare `REACT_APP_API_URL=wss://example.com/api/websocket` in [.env](.env).
+### Configuration
+
+Declare the following variable in [.env](.env):
+
+```
+REACT_APP_API_URL=wss://example.com/api/websocket
+```
+
 Replace `example.com` with your public hostname of the backend (example: ngrok domain).
 
-## Available Scripts
+### Install Packages
 
-In the project directory, you can run:
+```shell
+npm i --legacy-peer-deps
+```
 
-### `npm start`
+### Run frontend
 
-Runs the app in the development mode.\
+```shell
+npm start
+```
+
+It runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ## Docker image
 
