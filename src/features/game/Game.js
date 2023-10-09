@@ -1,3 +1,4 @@
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
@@ -16,7 +17,8 @@ import { ScoreBoard } from './ScoreBoard';
 import { Timer } from './Timer';
 import Button from '../../common/Button';
 import './Game.css';
-import {GameStatusEmoji, GameStatusWord} from './GameStatus';
+import { GameStatusEmoji, GameStatusWord } from './GameStatus';
+import addEndListener from '../../common/transition';
 
 export function Game() {
     const dispatch = useDispatch();
@@ -35,11 +37,18 @@ export function Game() {
                 <GameStatusEmoji />
                 <Timer />
             </div>
-            <div className="Game-board">
-                {gameState === GAME_STATE_IN_PROGRESS && isCurrentPlayerLead && <LeaderCanvas />}
-                {gameState === GAME_STATE_IN_PROGRESS && !isCurrentPlayerLead && <GuesserCanvas />}
-                {gameState !== GAME_STATE_IN_PROGRESS && <ScoreBoard />}
-            </div>
+            <SwitchTransition mode="out-in">
+                <CSSTransition
+                    key={gameState}
+                    addEndListener={addEndListener}
+                    classNames="fade">
+                    <div className="Game-board">
+                        {gameState === GAME_STATE_IN_PROGRESS && isCurrentPlayerLead && <LeaderCanvas />}
+                        {gameState === GAME_STATE_IN_PROGRESS && !isCurrentPlayerLead && <GuesserCanvas />}
+                        {gameState !== GAME_STATE_IN_PROGRESS && <ScoreBoard />}
+                    </div>
+                </CSSTransition>
+            </SwitchTransition>
             <div className="Game-footer">
                 {gameState !== GAME_STATE_IN_PROGRESS && gamePlayers.length >= 2 &&
                     <Button onClick={() => dispatch(startGame())} name="Start" title="Start the game" />
@@ -48,6 +57,6 @@ export function Game() {
                     <p>Waiting for more players to join.<br />Please, ask group members to open the link.</p>
                 }
             </div>
-        </div>
+        </div >
     );
 }
